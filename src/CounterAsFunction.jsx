@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const getStateFromLocalStorage = () => {
   const storage = localStorage.getItem('counterState');
@@ -9,6 +9,7 @@ const getStateFromLocalStorage = () => {
 
 const CounterAsFunction = () => {
   const [count, setCount] = useState(getStateFromLocalStorage());
+  let message = '';
 
   // I
   // const increment = () => setCount(count + 1);
@@ -37,6 +38,14 @@ const CounterAsFunction = () => {
     });
   };
 
+  // useRef
+  const countRef = useRef();
+
+  if (countRef.current < count) message = 'Higher than previous value';
+  if (countRef.current > count) message = 'Lower than previous value';
+
+  countRef.current = count;
+
   const decrement = () => setCount(count - 1);
   const reset = () => setCount(0);
 
@@ -47,6 +56,7 @@ const CounterAsFunction = () => {
   return (
     <div className="Counter">
       <p className="count">{count}</p>
+      <p>{message}</p>
       <section className="controls">
         <button onClick={increment}>Increment</button>
         <button onClick={decrement}>Decrement</button>

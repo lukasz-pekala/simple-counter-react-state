@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import Counter from './Counter';
+import CounterAsFunction from './CounterAsFunction';
 
 import './styles.scss';
 
@@ -10,6 +11,7 @@ const Application = () => {
     <main className="Application">
       <section className="Counters">
         <Counter />
+        <CounterAsFunction />
       </section>
     </main>
   );
